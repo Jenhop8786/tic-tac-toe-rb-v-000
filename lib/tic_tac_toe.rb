@@ -34,9 +34,9 @@ def turn(board)
  position = input_to_position(user_input)
  if !valid_move?(board, position)
    turn(board)
- end
  move(board, position, current_player(board))
   display_board(board)
+end
 end
 def position_taken?(board, position)
   board[position]== "X" || board[position] == "O"
