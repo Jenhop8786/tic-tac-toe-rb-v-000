@@ -35,3 +35,21 @@ end
 def input_to_position(user_input)
   user_input.to_i - 1
 end
+def turn(board)
+  puts "Please enter 1-9:"
+  user_input = gets.strip
+ position = input_to_position(user_input)
+ if !valid_move?(board, position)
+   turn(board)
+ end
+ move(board, position, current_player(board))
+  display_board(board)
+end
+def position_taken?(board, position)
+  board[position]== "X" || board[position] == "O"
+  # Creates a stop on RSpec
+  # !(board[location].nil? || board[location] == "")
+end
+def move(board, position, player)
+  board[position] = player
+end
