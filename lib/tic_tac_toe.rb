@@ -14,15 +14,16 @@ def play(board)
     turn(board)
   end
   def won?(board)
-  @ -52,18 +52,23 @@ def over?(board)
+    if won?(board)
+      puts "Congratulations #{winner(board)}!"
+    elsif draw?(board)
+      puts "Cat's Game!"
+    end
+  end
+def over?(board)
     won?(board) || draw?(board)
   end
-  if won?(board)
-    puts "Congratulations #{winner(board)}!"
-  elsif draw?(board)
-    puts "Cat's Game!"
-  end
-end
+  
 
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
