@@ -37,7 +37,6 @@ def turn(board)
  move(board, position, current_player(board))
   display_board(board)
 end
-end
 def position_taken?(board, position)
   board[position]== "X" || board[position] == "O"
   # Creates a stop on RSpec
