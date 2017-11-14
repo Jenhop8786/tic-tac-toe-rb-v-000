@@ -1,4 +1,4 @@
-WIN_COMBINATIONS = [
+-WIN_COMBINATIONS = [
   [0,1,2],
   [3,4,5],
   [6,7,8],
@@ -9,30 +9,25 @@ WIN_COMBINATIONS = [
   [6,4,2]
 ]
 
-def display_board(board)
-  puts " #{board[6]} | #{board[7]} | #{board[8]} "
-end
-def valid_move?(board, position)
-  position.between?(0,8) && !position_taken?(board, position)
-end
-def input_to_position(user_input)
-  user_input.to_i - 1
-end
-def turn(board)
- puts "Please enter 1-9:"
- user_input = gets.strip
-  position = input_to_position(user_input)
-  if !valid_move?(board, position)
+def play(board)
+  while !over?(board)
     turn(board)
   end
-  move(board, position, current_player(board))
-  display_board(board)
+
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cats Game!"
+  end
 end
-def position_taken?(board, position)
-  board[position]== "X" || board[position] == "O"
-  # Creates a stop on RSpec
-  # !(board[location].nil? || board[location] == "")
+
+def display_board(board)
+  puts " #{board[0]} | #{board[1]} | #{board[2]} "
+  puts "-----------"
+  puts " #{board[3]} | #{board[4]} | #{board[5]} "
+  puts "-----------"
+  puts " #{board[6]} | #{board[7]} | #{board[8]} "
 end
-def move(board, position, player)
-  board[position] = player
+
+def valid_move?(board, input)
 end
