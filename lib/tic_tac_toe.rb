@@ -66,11 +66,6 @@ def winner(board)
   end
 end
 
-board = Array.new(9)
-puts "Welcome to Tic Tac Toe"
-while !(won?(board) || draw?(board))
-  turn(board)
-end
 
 if won?(board)
   puts "Congratulations! #{winner(board)}"
