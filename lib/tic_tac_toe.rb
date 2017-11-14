@@ -1,4 +1,4 @@
--WIN_COMBINATIONS = [
+WIN_COMBINATIONS = [
   [0,1,2],
   [3,4,5],
   [6,7,8],
@@ -17,7 +17,7 @@ def play(board)
   if won?(board)
     puts "Congratulations #{winner(board)}!"
   elsif draw?(board)
-    puts "Cats Game!"
+    puts "Cat's Game!"
   end
 end
 
