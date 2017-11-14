@@ -38,20 +38,6 @@ def won?(board)
   end
 end
 
-def draw?(board)
-  !won?(board) && full?(board)
-end
-
-def turn(board)
-  display_board(board)
-  puts "Please enter 1-9:"
-  input = gets.strip
-  if !valid_move?(board, input)
-    turn(board)
-  end
-  move(board, input)
-end
-
 def position(board, location)
   board[location.to_i]
 end
