@@ -65,6 +65,3 @@ def winner(board)
     position(board, winning_combo.first)
   end
 end
-
-
-
