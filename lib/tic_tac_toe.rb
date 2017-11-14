@@ -30,7 +30,7 @@ def won?(board)
 end
 
 def draw?(board)
-  !won?(board) && board.all?{|token| token == "X" || token == "O"}
+  !won?(board) && full?(board)
 end
 
 def turn(board)
