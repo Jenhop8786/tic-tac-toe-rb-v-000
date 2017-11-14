@@ -29,5 +29,9 @@ def display_board(board)
   puts " #{board[6]} | #{board[7]} | #{board[8]} "
 end
 
-def valid_move?(board, input)
+def valid_move?(board, position)
+  position.between?(0,8) && !position_taken?(board, position)
+end
+def input_to_position(user_input)
+  user_input.to_i - 1
 end
