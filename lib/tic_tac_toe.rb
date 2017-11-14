@@ -9,59 +9,30 @@ WIN_COMBINATIONS = [
   [6,4,2]
 ]
 
-def play(board)
-  while !over?(board)
-   turn(board)
- end
-def full?(board)
-  board.all?{|token| token == "X" || token == "O"}
+def display_board(board)
+  puts " #{board[6]} | #{board[7]} | #{board[8]} "
 end
-def draw?(board)
-  !won?(board) && full?(board)
- end
-  def over?(board)
+def valid_move?(board, position)
+  position.between?(0,8) && !position_taken?(board, position)
+end
+def input_to_position(user_input)
+  user_input.to_i - 1
+end
+def turn(board)
+ puts "Please enter 1-9:"
+ user_input = gets.strip
+  position = input_to_position(user_input)
+  if !valid_move?(board, position)
     turn(board)
   end
-  move(board, input, current_player(board))
+  move(board, position, current_player(board))
   display_board(board)
 end
-
-def valid_move?(board, input)
-  input.to_i.between?(1,9) && !position_taken?(board, input.to_i-1)
+def position_taken?(board, position)
+  board[position]== "X" || board[position] == "O"
+  # Creates a stop on RSpec
+  # !(board[location].nil? || board[location] == "")
 end
-
-def won?(board)
-  WIN_COMBINATIONS.detect do |combo|
-    position(board, combo[0]) == position(board, combo[1]) &&
-    position(board, combo[1]) == position(board, combo[2]) &&
-    position_taken?(board, combo[0])
-  end
-end
-
-def position(board, location)
-  board[location.to_i]
-end
-
-def position_taken?(board, location)
-  !(position(board, location).nil? || position(board, location) == "")
-end
-
-def current_player(board)
-  turn_count(board) % 2 == 0 ? "X" : "O"
-end
-
-def turn_count(board)
-  board.count{|token| token == "X" || token == "O"}
-end
-
-def move(board, location)
-  if valid_move?(board, location)
-    board[location.to_i-1] = current_player(board)
-  end
-end
-
-def winner(board)
-  if winning_combo = won?(board)
-    position(board, winning_combo.first)
-  end
+def move(board, position, player)
+  board[position] = player
 end
